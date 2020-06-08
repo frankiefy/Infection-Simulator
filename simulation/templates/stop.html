@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Simulation</title>
+	<link rel="stylesheet" type="text/css" href="/static/css/style.css">
+	<script type="text/javascript" src="{{ url_for('static', filename='js/index.js') }}"></script>
+</head>
+<body>
+<h1>{{name}}</h1>
+<h1>Start Population: {{start_population}}</h1>
+<h1>End Population: {{end_population}}</h1>
+<h1>Start Infected Population: {{start_infected}}</h1>
+<h1>Spread Infected Rate: {{spread_infected_rate}}</h1>
+<h1>Max Infected Population: {{infected_population}}</h1>
+<h1>Dead Population: {{dead_population}}</h1>
+<h1>Timeperiod (days): {{timeperiod}}</h1>
+<!--<h1>Data: {{data}}</h1>-->
+<form class="info-form" method="post" action="/save">
+	<h1>CHARTS<br>options: alive, dead, infected<br>('|' chart separate, '-' multi-chart separate):</h1>
+	<input type="text" value="alive|infected|dead|dead-alive" id="charts" name="charts" style="font-size: 20px;width: 350px;"><br>
+	<input type="number" name="end-population" id="end-population" value="{{end_population}}" style="display:none;">
+	<input type="number" name="start-population" id="start-population" value="{{start_population}}" style="display:none;">
+	<input type="number" name="infected-population" id="infected-population" value="{{infected_population}}" style="display:none;">
+	<input type="number" name="start_infected" id="start_infected" value="{{start_infected}}" style="display:none;">
+	<input type="number" name="spread_infected_rate" id="spread_infected_rate" value="{{spread_infected_rate}}" style="display:none;">
+	<input type="number" name="dead-population" id="dead-population" value="{{dead_population}}" style="display:none;">
+	<input type="text" value="{{timeperiod}}" id="timeperiod-input" name="timeperiod" style="display:none;">
+	<input type="text" value="{{name}}" id="name" name="name" style="display:none;">
+	<input type="text" value="{{data}}" id="data" name="data" style="display:none;">
+	<button type="submit">SAVE</button>
+</form>
+</body>
+</html>

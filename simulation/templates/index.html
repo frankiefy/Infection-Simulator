@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Simulation</title>
+	<link rel="stylesheet" type="text/css" href="/static/css/style.css">
+	<script type="text/javascript" src="{{ url_for('static', filename='js/index.js') }}"></script>
+</head>
+<body>
+<h1>Simulation</h1>
+<form class="info-form" method="post" action="/start">
+	<input type="text" value="" placeholder="Name" id="name" name="name" >
+	<button type="submit">Start ></button>
+</form>
+</body>
+</html>

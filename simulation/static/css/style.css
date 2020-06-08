@@ -1,0 +1,71 @@
+body {
+    font-family: sans-serif;
+}
+
+#map {
+    width:100%;
+}
+#map-content {
+    width:100%;
+}
+#map-content tr td {
+    height:30px;
+    width:10px;
+    padding:0px;
+    text-align:center;
+    font-size:20px;
+}
+#streetRow {
+    width:100%;
+    background-color:black;
+}
+#houseRow {
+    width:100%;
+    background-color:brown;
+}
+.person {
+    color: green;
+}
+
+.person.infected {
+    color: red;
+}
+
+.person.infected.dead {
+    color: black;
+}
+
+.chart-container {
+    display:none;
+    margin: 0 auto;
+    width:80vw;
+    position:relative;
+}
+
+#data-info {
+    width:30%;
+    background:grey;
+}
+
+#info {
+    text-align:right;
+}
+
+#chart-selects, #chart-selects table, #info {
+    width:100%;
+    background:grey;
+}
+
+#chart-selects table tr td, #data-info tr td {
+    text-align:center;
+}
+
+#chart-selects table tr td a.active {
+    color:white;
+}
+
+#chart-selects table tr td a {
+    cursor:pointer;
+    width: 100%;
+    display: block;
+}

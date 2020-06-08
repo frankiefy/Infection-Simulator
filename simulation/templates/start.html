@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Simulation</title>
+	<link rel="stylesheet" type="text/css" href="/static/css/style.css">
+	<script type="text/javascript" src="{{ url_for('static', filename='js/index.js') }}"></script>
+</head>
+<body>
+<h1>{{name}}</h1>
+<form class="info-form" method="post" action="/begin">
+	<label for="population">Population</label><br>
+	<input type="number" name="population" id="population"><br>
+	<label for="timeperiod">Timeperiod (days)</label><br>
+	<input type="number" name="timeperiod" id="timeperiod"><br>
+	<label for="start_infected">Start Infected</label><br>
+	<input type="number" name="start_infected" id="start_infected"><br>
+	<label for="spread_infected">How likely are infected go out? (notvery1-10very)</label><br>
+	<input type="number" name="spread_infected" id="spread_infected"><br>
+	<input type="text" value="{{name}}" id="name" name="name" style="display:none;">
+	<button type="submit">BEGIN</button>
+</form>
+</body>
+</html>

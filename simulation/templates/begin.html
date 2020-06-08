@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Simulation</title>
+	<link rel="stylesheet" type="text/css" href="/static/css/style.css">
+	<script type="text/javascript" src="{{ url_for('static', filename='js/index.js') }}"></script>
+</head>
+<body>
+<h1>{{name}}</h1>
+<h1>Population: <font id="population-current">{{population}}</font>/<font id="population-start">{{population}}</font></h1>
+<h1>Infected: <font id="infected-count">0</font></h1>
+<h1>Dead: <font id="dead-count">0</font></h1>
+<h1>Spread Infection Rate: <font id="spread_infected">{{spread_infected}}</font>/10</h1>
+<button onclick="run()">RUN</button>
+<button onclick="step()" style="display:none;">STEP</button>
+<button onclick="randomInfect({{population}})" style="display:none;">INFECT</button>
+<form class="info-form" method="post" action="/stop">
+	<input type="number" name="end-population" id="population" value="{{population}}" style="display:none;">
+	<input type="number" name="start-population" id="start-population" value="{{population}}" style="display:none;">
+	<input type="number" name="start_infected" id="start_infected" value="{{start_infected}}" style="display:none;">
+	<input type="number" name="infected-population" id="infected-population" value="0" style="display:none;">
+	<input type="number" name="dead-population" id="dead-population" value="0" style="display:none;">
+	<input type="number" name="spread_infected_rate" id="spread_infected_rate" value="{{spread_infected}}" style="display:none;">
+	<input type="text" value="{{timeperiod}}" id="timeperiod-input" name="timeperiod" style="display:none;">
+	<input type="text" value="{{name}}" id="name" name="name" style="display:none;">
+	<input type="text" value="{{population}},{{start_infected}},0" id="data" name="data" style="display:none;">
+	<button type="submit">STOP</button>
+</form>
+<h1 id="day">Days: <font id="day-counter">0</font>/<font id="timeperiod">{{timeperiod}}</font></h1>
+<h1 id="time">NIGHT</h1>
+<table id="map" cellspacing="0" cellpadding="0">
+	<tbody id="map-content">
+		<tr id="streetRow"></tr>
+		<tr id="houseRow"></tr>
+	</tbody>
+</table>
+</body>
+</html>

@@ -1,0 +1,74 @@
+<center>
+  <h1>{{('-').join( titles )|title}}<br>
+  <span style="font-size: 15px;" id="save-{{('-').join(titles)}}" onclick="saveImage('chart-{{('-').join(titles)}}')">save this chart</span></h1>
+  <canvas id="chart-{{('-').join(titles)}}"></canvas>
+  <script>
+    // get bar chart canvas
+    var mychart = document.getElementById("chart-{{('-').join(titles)}}").getContext("2d");
+    steps = 10
+    max = {{ max }}
+
+    Chart.defaults.global.elements.line.tension = 0;
+    Chart.defaults.global.tooltips.intersect = false;
+
+    // draw bar chart
+    var LineChartDemo = new Chart(mychart, {
+      type: 'line',
+      data: {
+        labels: [{% for item in labels %}
+          "{{ item }}",
+        {% endfor %}],
+        datasets: [
+        {% for items in values %}
+            {
+              data: [{% for item in items %}
+                {{ item }},
+              {% endfor %}],
+              backgroundColor: 'rgba({{colors[loop.index0]}}, 0.2)',
+              borderColor: 'rgba({{colors[loop.index0]}}, 1)',
+              borderWidth: 1,
+              label:'{{titles[loop.index0]}}',
+              lineTension: 0
+            },
+        {% endfor %}
+        ]
+      },
+      options: {
+        tooltips: {
+          callbacks: {
+            title: function(tooltipItem, data) {
+              return 'Day '+data['labels'][tooltipItem[0]['index']];
+            }
+          },
+          enabled: true,
+        },
+        scales: {
+          yAxes: [{
+            ticks: {
+              autoSkip: false,
+              stacked: true,
+              beginAtZero: true,
+              suggestedMax: {{max+10}}
+            },
+            scaleLabel: {
+              display: true,
+              labelString: '# OF PEOPLE'
+            }
+          }],
+          xAxes: [{
+            display: true,
+            scaleLabel: {
+              display: true,
+              labelString: '# OF DAYS',
+            },
+            ticks: {
+              autoSkip: false,
+              stacked: false,
+              beginAtZero: true,
+            }
+          }]
+        }
+      }
+    });
+  </script>
+</center>

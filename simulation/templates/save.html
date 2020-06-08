@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Simulation</title>
+	<link rel="stylesheet" type="text/css" href="/static/css/style.css">
+	<script type="text/javascript" src="{{ url_for('static', filename='js/index.js') }}"></script>
+	<script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.0.0/Chart.min.js'></script>
+</head>
+
+<body>
+<table id="info"><tr>
+	<td>
+		<table id="data-info"><tr>
+			<td>START: {{max}}</td>
+			<td>END: {{min}}</td>
+		</tr><tr>
+			<td>INFECTED: {{save_item['infected_population']}}</td>
+			<td>DEAD: {{save_item['dead_population']}}</td>
+		</tr><tr>
+			<td>START INFECTED: {{save_item['start_infected']}}</td>
+			<td>SPREAD INFECTED RATE: {{save_item['spread_infected_rate']}}</td>
+		</tr></table>
+	</td>
+	<td>
+		<a href="/">EXIT</a>
+	</td>
+</tr></table>
+<br>
+<div id="chart-selects"><table><tr>
+	{% for key,value in value_set.items() %}
+		<td><a id="chart-select-{{key}}" onclick="selectChart('{{key}}')" class="chart-select">{{key|upper}}</a></td>
+	{% endfor %}
+</tr></table></div>
+<div id="chart-containers">
+	{% for key,value in value_set.items() %}
+		{% set h, values, titles, colors = key.split('-'), [], [] ,[] %}
+		{% for dash in h %}
+			{% set values = values.append(value_set[dash]) %}
+			{% set titles = titles.append(dash) %}
+			{% set colors = colors.append(colors_set[dash]) %}
+		{% endfor %}
+		<div id="chart-container-{{key}}" class="chart-container">
+			{% include 'line_chart.html' %}
+		</div>
+	{% endfor %}
+</div>
+</body>
+</html>
